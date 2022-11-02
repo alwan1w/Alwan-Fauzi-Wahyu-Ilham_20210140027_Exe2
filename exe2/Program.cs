@@ -72,12 +72,25 @@ namespace exe2
                         cmp_count++;
                     }
                     cmp_count++;
-                    if (i < al) //if the greater element is on thge left of the element
+                    if (i < al) 
                     {
-                        //swap the element at index i with the element at index al
+                        
                         swap(i, al);
                         mov_count++;
                     }
+                    
+
+                    if (low < j)
+                    {
+                        
+                        swap(low, j);
+                        mov_count++;
+                    }
+
+                    q_sort(low, j - 1);
+
+                   
+                    q_sort(j + 1, high);
                 }
             }
         }
