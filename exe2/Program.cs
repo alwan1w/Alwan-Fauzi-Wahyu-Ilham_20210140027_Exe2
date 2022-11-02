@@ -58,7 +58,7 @@ namespace exe2
 
                 while (i <= al)
                 {
-                  
+
                     while ((arr[1] <= pivot) && (i <= high))
                     {
                         i++;
@@ -72,27 +72,59 @@ namespace exe2
                         cmp_count++;
                     }
                     cmp_count++;
-                    if (i < al) 
+                    if (i < al)
                     {
-                        
+
                         swap(i, al);
                         mov_count++;
                     }
+                }
                     
 
-                    if (low < j)
+                    if (low < al)
                     {
                         
-                        swap(low, j);
+                        swap(low, al);
                         mov_count++;
                     }
 
-                    q_sort(low, j - 1);
+                    q_sort(low, al - 1);
 
                    
-                    q_sort(j + 1, high);
+                    q_sort(al + 1, high);
                 }
             }
+        }
+    void display()
+        {
+            Console.WriteLine("\n---------------------------");
+            Console.WriteLine(" Sorted array elements ");
+            Console.WriteLine("-----------------------------");
+
+            for (int al = 0; al < n; al++)
+            {
+                Console.WriteLine(arr[al]);
+            }
+            Console.WriteLine("\nNumber of comparison: " + cmp_count);
+            Console.WriteLine("\nNumber of data movements: " + mov_count);
+        }
+        int getSize()
+        {
+            return (n);
+        }
+        static void Main(string[] args)
+        {
+     
+            Program myList = new Program();
+     
+            myList.input();
+       
+            myList.q_sort(0, myList.getSize() - 1);
+         
+            myList.display();
+           
+            Console.WriteLine("n\nPress Enter to exit.");
+            Console.Read();
         }
     }
 }
