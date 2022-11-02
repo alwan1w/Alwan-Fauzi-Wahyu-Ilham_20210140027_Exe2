@@ -65,6 +65,13 @@ namespace exe2
                         cmp_count++;
                     }
                     cmp_count++;
+
+                    while ((arr[al] > pivot) && (al >= low))
+                    {
+                        al--;
+                        cmp_count++;
+                    }
+                    cmp_count++;
                 }
             }
         }
