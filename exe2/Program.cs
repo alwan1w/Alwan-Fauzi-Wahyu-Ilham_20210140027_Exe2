@@ -8,9 +8,12 @@ namespace exe2
 {
     class Program
     {
-        private int[] arr = new int[5];
-        private int cmp_count = 0; 
-        private int mov_count = 0; 
+        //array of integers to hold values
+        private int[] arr = new int[20];
+        private int cmp_count = 0; // number of comparison
+        private int mov_count = 0; // number of data movements
+
+        // Number of elements in array
         private int n;
 
         void input()
@@ -29,81 +32,89 @@ namespace exe2
             Console.WriteLine("Enter Array Elements");
             Console.WriteLine("\n==================");
 
-            
+            //get array elements
             for (int i = 0; i < n; i++)
             {
                 Console.Write("<" + (i + 1) + ">");
                 string s1 = Console.ReadLine();
                 arr[i] = Int32.Parse(s1);
             }
-            
-            void swap(int x, int y)
-            {
-                int temp;
-
-                temp = arr[x];
-                arr[x] = arr[y];
-                arr[y] = temp;
-            }
-            public void alwan(int low, int high)
-            {
-                int pivot, i, al;
-                if (low > high)
-                    return;
-
-                i = low + 1;
-                al = high;
-
-                pivot = arr[low];
-
-                while (i <= al)
-                {
-
-                    while ((arr[1] <= pivot) && (i <= high))
-                    {
-                        i++;
-                        cmp_count++;
-                    }
-                    cmp_count++;
-
-                    while ((arr[al] > pivot) && (al >= low))
-                    {
-                        al--;
-                        cmp_count++;
-                    }
-                    cmp_count++;
-                    if (i < al)
-                    {
-
-                        swap(i, al);
-                        mov_count++;
-                    }
-                }
-                    
-
-                    if (low < al)
-                    {
-                        
-                        swap(low, al);
-                        mov_count++;
-                    }
-
-                    q_sort(low, al - 1);
-
-                   
-                    q_sort(al + 1, high);
-                }
-            }
         }
-    void display()
+        //swaps the element at index x with the element at index y
+        void swap(int x, int y)
+        {
+            int temp;
+
+            temp = arr[x];
+            arr[x] = arr[y];
+            arr[y] = temp;
+        }
+
+        public void q_sort(int low, int high)
+        {
+            int pivot, i, j;
+            if (low > high)
+                return;
+
+            //partition the list into two parts
+            //one containing elements less that or equal to pivot 
+            //outher conntainning elements greather than pivot 
+
+            i = low + 1;
+            j = high;
+
+            pivot = arr[low];
+
+            while (i <= j)
+            {
+                //Search for an element greater than pivot
+                while ((arr[1] <= pivot) && (i <= high))
+                {
+                    i++;
+                    cmp_count++;
+                }
+                cmp_count++;
+
+                //search for an element less than or equal to pivot
+                while ((arr[j] > pivot) && (j >= low))
+                {
+                    j--;
+                    cmp_count++;
+                }
+                cmp_count++;
+
+                if (i < j) //if the greater element is on thge left of the element
+                {
+                    //swap the element at index i with the element at index j
+                    swap(i, j);
+                    mov_count++;
+                }
+
+            }
+            //j now contains the index of the last element in the sorted list
+
+            if (low < j)
+            {
+                //move the pivot of its correct position in the list 
+                swap(low, j);
+                mov_count++;
+            }
+            //sort the list on the left of pivot using quick sort
+            q_sort(low, j - 1);
+
+            //sort the list on the right of pivot using quick sort
+            q_sort(j + 1, high);
+        }
+
+        void display()
         {
             Console.WriteLine("\n---------------------------");
             Console.WriteLine(" Sorted array elements ");
             Console.WriteLine("-----------------------------");
 
-            for (int al = 0; al < n; al++)
+            for (int j = 0; j < n; j++)
             {
-                Console.WriteLine(arr[al]);
+                Console.WriteLine(arr[j]);
             }
             Console.WriteLine("\nNumber of comparison: " + cmp_count);
             Console.WriteLine("\nNumber of data movements: " + mov_count);
@@ -114,15 +125,15 @@ namespace exe2
         }
         static void Main(string[] args)
         {
-     
+            //declaracin the object of the class
             Program myList = new Program();
-     
+            //acept array elements
             myList.input();
-       
+            //calling the sorting function 
             myList.q_sort(0, myList.getSize() - 1);
-         
+            //display sorted array
             myList.display();
-           
+            //to exit from the console
             Console.WriteLine("n\nPress Enter to exit.");
             Console.Read();
         }
