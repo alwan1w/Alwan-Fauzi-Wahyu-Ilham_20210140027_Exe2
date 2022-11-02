@@ -57,6 +57,15 @@ namespace exe2
                 pivot = arr[low];
 
                 while (i <= al)
+                {
+                  
+                    while ((arr[1] <= pivot) && (i <= high))
+                    {
+                        i++;
+                        cmp_count++;
+                    }
+                    cmp_count++;
+                }
             }
         }
     }
