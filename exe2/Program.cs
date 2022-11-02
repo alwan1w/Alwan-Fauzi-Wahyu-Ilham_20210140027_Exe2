@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 
 namespace exe2
 {
-    internal class Program
+    class Program
     {
-        static void Main(string[] args)
-        {
-        }
+        private int[] arr = new int[5];
+        private int cmp_count = 0; 
+        private int mov_count = 0; 
+
+        
+        private int n;
     }
 }
