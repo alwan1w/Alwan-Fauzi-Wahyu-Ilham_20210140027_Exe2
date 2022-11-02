@@ -45,6 +45,19 @@ namespace exe2
                 arr[x] = arr[y];
                 arr[y] = temp;
             }
+            public void alwan(int low, int high)
+            {
+                int pivot, i, al;
+                if (low > high)
+                    return;
+
+                i = low + 1;
+                al = high;
+
+                pivot = arr[low];
+
+                while (i <= al)
+            }
         }
     }
 }
